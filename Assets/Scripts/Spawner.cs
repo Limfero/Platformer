@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,16 +14,15 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Coin.Taken += Spawn;
+        _coin.Taken += Spawn;
     }
 
     private void OnDisable()
     {
-        Coin.Taken -= Spawn;
+        _coin.Taken -= Spawn;
     }
 
     private void Spawn() => StartCoroutine(Countdown());
-
 
     private IEnumerator Countdown()
     {

@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Jumper : MonoBehaviour
 {
+    private const string Jump = nameof(Jump);
     private const string Ground = nameof(Ground);
     private const string IsJumping = nameof(IsJumping);
 
@@ -11,6 +12,7 @@ public class Jumper : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
+
     private float _rayDistance = 1.5f;
 
     private void Start()
@@ -24,7 +26,7 @@ public class Jumper : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, _rayDistance, LayerMask.GetMask(Ground));
         _isGrounded = hit.collider != null;
 
-        if (Input.GetKey(KeyCode.Space) && _isGrounded)
+        if (Input.GetAxis(Jump) > 0 && _isGrounded)
         {
             _animator.SetBool(IsJumping, true);
 

@@ -3,16 +3,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private const string Player = nameof(Player);
+    public event Action Taken;
 
-    public static event Action Taken;
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(Player))
-        {
-            Taken?.Invoke();
-            gameObject.SetActive(false);
-        }
-    }
+    public void Take() => Taken?.Invoke();
 }

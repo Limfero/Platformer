@@ -30,9 +30,8 @@ public class EnemyMovement : MonoBehaviour
     private void SetRotation()
     {
         if (_checkPoints[_currentPoint].position.x < transform.position.x)
-            transform.rotation = Quaternion.Euler(0, _rotationAngle, 0);
-        
-        if(_checkPoints[_currentPoint].position.x > transform.position.x)
+            transform.rotation = Quaternion.Euler(0, _rotationAngle, 0);      
+        else if(_checkPoints[_currentPoint].position.x > transform.position.x)
             transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }

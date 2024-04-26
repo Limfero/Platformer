@@ -3,19 +3,18 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    public event Action<float> Changed;
-
     private int _coinCount = 0;
 
-    private void OnEnable()
-    {
-        Coin.Taken += Take;
-    }
+    public event Action<float> Changed;
 
-    private void OnDisable()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Coin.Taken -= Take;
-    }
+        if (collision.GetComponent<Coin>())
+        {
+            Changed?.Invoke(++_coinCount);
 
-    private void Take() => Changed?.Invoke(++_coinCount);
+            collision.GetComponent<Coin>().Take();
+            collision.gameObject.SetActive(false);
+        }
+    }
 }
