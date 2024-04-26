@@ -24,7 +24,9 @@ public class Movement : MonoBehaviour
     {
         _direction = Input.GetAxisRaw(Horizontal);
         _animator.SetFloat(Speed, Mathf.Abs(_direction * _moveSpeed));
-        Rotate();
+
+        if(_direction != 0)
+            Rotate();
     }
 
     private void FixedUpdate()
@@ -36,7 +38,7 @@ public class Movement : MonoBehaviour
     {
         if (_direction > 0)
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-        else if (_direction < 0)
+        else
             transform.localRotation = Quaternion.Euler(0, _rotationAngle, 0);
     }
 }

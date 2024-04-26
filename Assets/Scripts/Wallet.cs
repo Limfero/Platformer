@@ -9,11 +9,11 @@ public class Wallet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Coin>())
+        if (collision.TryGetComponent(out Coin coin))
         {
             Changed?.Invoke(++_coinCount);
 
-            collision.GetComponent<Coin>().Take();
+            coin.Take();
             collision.gameObject.SetActive(false);
         }
     }
