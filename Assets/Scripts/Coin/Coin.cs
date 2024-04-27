@@ -5,5 +5,9 @@ public class Coin : MonoBehaviour
 {
     public event Action Taken;
 
-    public void Take() => Taken?.Invoke();
+    public void Take()
+    {
+        gameObject.SetActive(false);
+        Taken?.Invoke();
+    }
 }

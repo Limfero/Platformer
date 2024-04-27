@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Activator : MonoBehaviour
 {
     [SerializeField] private Coin _coin;
     [SerializeField] private float _delay;

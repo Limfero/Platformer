@@ -14,7 +14,6 @@ public class Wallet : MonoBehaviour
             Changed?.Invoke(++_coinCount);
 
             coin.Take();
-            collision.gameObject.SetActive(false);
         }
     }
 }
