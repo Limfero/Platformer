@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Attacker))]
+[RequireComponent(typeof(Attacker), typeof(Movement), typeof(Jumper))]
 public class PlayerController : MonoBehaviour
 {
     private const string Horizontal = nameof(Horizontal);
@@ -10,19 +9,20 @@ public class PlayerController : MonoBehaviour
     private const string Fire1 = nameof(Fire1);
 
     private Attacker _attacker;
-
-    public event Action<float> ChangedDirection;
-    public event Action<float> ChangedJump;
+    private Movement _movement;
+    private Jumper _jumper;
 
     private void Awake()
     {
         _attacker = GetComponent<Attacker>();
+        _movement = GetComponent<Movement>();
+        _jumper = GetComponent<Jumper>();
     }
 
     private void Update()
     {
-       ChangedDirection?.Invoke(Input.GetAxis(Horizontal));
-       ChangedJump?.Invoke(Input.GetAxis(Jump));
+       _movement.ChangeDirection(Input.GetAxis(Horizontal));
+        _jumper.Jump(Input.GetAxis(Jump));
 
         if (Input.GetAxis(Fire1) > 0)
             _attacker.Attack();

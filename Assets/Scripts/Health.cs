@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 
     private float _currentHealth;
 
-    public event Action Death;
+    public event Action Died;
 
     public bool IsFullHealth => _currentHealth == _maxHealth;
 
@@ -26,6 +26,6 @@ public class Health : MonoBehaviour
         _currentHealth = Math.Clamp(_currentHealth - damage, 0, _maxHealth);
 
         if (_currentHealth == 0)
-            Death?.Invoke();
+            Died?.Invoke();
     }
 }

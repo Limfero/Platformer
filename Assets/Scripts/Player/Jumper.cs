@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(PlayerController))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Jumper : MonoBehaviour
 {
     private const string Ground = nameof(Ground);
@@ -10,7 +10,6 @@ public class Jumper : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-    private PlayerController _playerController;
     private bool _isGrounded;
     private float _direction;
 
@@ -20,17 +19,6 @@ public class Jumper : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _playerController = GetComponent<PlayerController>();
-    }
-
-    private void OnEnable()
-    {
-        _playerController.ChangedJump += Jump;
-    }
-
-    private void OnDisable()
-    {
-        _playerController.ChangedJump -= Jump;
     }
 
     private void Update()
@@ -50,13 +38,13 @@ public class Jumper : MonoBehaviour
         }
     }
 
-    private void Jump(float direction)
-    {
-        _direction = direction;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _animator.SetBool(IsJumping, false);
+    }
+
+    public void Jump(float direction)
+    {
+        _direction = direction;
     }
 }

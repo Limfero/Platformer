@@ -23,12 +23,12 @@ public class DamageTaker : MonoBehaviour
 
     private void OnEnable()
     {
-        _health.Death += Death;
+        _health.Died += Die;
     }
 
     private void OnDisable()
     {
-        _health.Death -= Death;
+        _health.Died -= Die;
     }
 
     public void TakeDamage(Vector2 positionAttacker, float damage)
@@ -40,7 +40,7 @@ public class DamageTaker : MonoBehaviour
         _animator.SetTrigger(TakedDamageTrigger);
     }
 
-    private void Death()
+    private void Die()
     {
         _animator.SetTrigger(DeathTrigger);
 
