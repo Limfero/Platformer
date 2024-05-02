@@ -43,9 +43,6 @@ public class DamageTaker : MonoBehaviour
     private void Die()
     {
         _animator.SetTrigger(DeathTrigger);
-
-        _rigidbody.isKinematic = true;
-        _collider.enabled = false;
     }
 
     private void DeathToggle()

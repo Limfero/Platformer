@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private int _rotationAngle = 180;
     private float _rayDistance = 1.5f;
     private bool _playerInZone = false;
+    private bool _canMove = true;
     private float _inaccuracy = 0.25f;
 
     private PlayerController _player;
@@ -44,11 +45,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (_playerInZone)
-            MoveToPlayer();
-        else
-            MoveToPoints();
+        if (_canMove)
+        {
+            if (_playerInZone)
+                MoveToPlayer();
+            else
+                MoveToPoints();
+        }
     }
+
+    public void Die() => _canMove = false;
 
     private void MoveToPoints()
     {
