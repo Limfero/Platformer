@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Health _target;
 
     private void Update()
     {

@@ -11,14 +11,12 @@ public class Movement : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-    private SpriteRenderer _spriteRenderer;
     private float _direction;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
